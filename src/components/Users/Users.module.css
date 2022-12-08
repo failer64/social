@@ -1,0 +1,49 @@
+.body {
+    background-color: #f3f3f3;
+}
+
+.photo {
+    width: 50px;
+	margin-bottom: 10px;
+}
+
+.photo img {
+    max-width: 100%;
+}
+
+.pagging {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.pagging span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    font-size: 18px;
+    background-color: #c3c3c3;
+    cursor: pointer;
+}
+
+.pagging span:not(:last-child) {
+    margin-right: 20px;
+}
+
+.pagging .active {
+    background-color: #676363;
+    color: #fff;
+}
+
+.button {
+    border: 1px solid #333333;
+	padding: 5px 15px;
+	margin-bottom: 15px;
+}
+
+.button:disabled {
+	color: #fff;
+    background-color: #676363;
+}

@@ -1,0 +1,60 @@
+.dialogs {
+	display: grid;
+	grid-template-columns: minmax(100px, 200px) 1fr;
+	background-color: rgb(89, 103, 174);
+	padding: 20px;
+	color: #fff;
+}
+
+.items {
+	border-right: 1px solid #333;
+}
+
+.messages {
+	padding: 0px 0px 0px 30px;
+	display: flex;
+	flex-direction: column;
+	max-width: 400px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.form:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+.title {
+	font-size: 30px;
+	margin-bottom: 30px;
+}
+
+.input {
+	margin-bottom: 20px;
+}
+
+.input textarea {
+	resize: none;
+	padding: 10px;
+	min-height: 80px;
+	width: 100%;
+	background-color: #eee3e3;
+	color: #111;
+}
+
+.button {
+	background-color: rgb(37, 203, 37);
+	padding: 5px 20px;
+	color: #fff;
+	font-size: 24px;
+	align-self: flex-end;
+}
+
+@media (any-hover: hover) {
+	.button:hover {
+		transition: background-color 0.3s ease 0s;
+		background-color: rgb(25, 138, 25);
+	}
+}

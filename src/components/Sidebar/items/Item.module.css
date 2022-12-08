@@ -1,0 +1,22 @@
+.item {
+	
+}
+.item:not(:last-child) {
+	margin-bottom: 10px;
+}
+.link {
+	text-transform: capitalize;
+	font-size: 24px;
+	color: #fff;
+}
+.active {
+	text-transform: capitalize;
+	font-size: 24px;
+	color: #222;
+}
+@media (any-hover: hover) {
+	.link:hover {
+		transition: color 0.3s ease 0s;
+		color: #222;
+	}
+}

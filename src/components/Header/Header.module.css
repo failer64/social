@@ -1,0 +1,54 @@
+.header {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 96px;
+	grid-area: header;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 15px;
+	background-color: white;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+}
+
+.logo {
+	max-width: 150px;
+}
+
+.logo img {
+	max-width: 100%;
+}
+
+.item {
+	text-align: center;
+	font-size: 18px;
+	color: #111;
+}
+
+.login {}
+
+.label {
+	display: inline-block;
+	margin-bottom: 5px;
+	font-size: 20px;
+	color: #000;
+}
+
+.logout {
+	display: block;
+}
+
+@media (any-hover: hover) {
+	.login:hover {
+		transition: color 0.3s ease 0s;
+		color: #1e74fd;
+	}
+
+	.logout:hover {
+		transition: color 0.3s ease 0s;
+		color: #1e74fd;
+	}
+}

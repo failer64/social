@@ -1,0 +1,11 @@
+.message {
+	font-size: 18px;
+}
+
+.message:nth-child(even) {
+	align-self: flex-end;
+}
+
+.message:not(:last-child) {
+	margin-bottom: 20px;
+}
