@@ -2,48 +2,98 @@
     background-color: #f3f3f3;
 }
 
+.row {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.block {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .photo {
-    width: 50px;
-	margin-bottom: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
 }
 
 .photo img {
     max-width: 100%;
+    transition: transform 0.4s ease 0s;
 }
 
-.pagging {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-.pagging span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 30px;
-    font-size: 18px;
-    background-color: #c3c3c3;
-    cursor: pointer;
-}
-
-.pagging span:not(:last-child) {
-    margin-right: 20px;
-}
-
-.pagging .active {
-    background-color: #676363;
-    color: #fff;
+.photo img:hover {
+    transform: scale(1.1);
 }
 
 .button {
-    border: 1px solid #333333;
-	padding: 5px 15px;
-	margin-bottom: 15px;
+    background-color: #05f;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 12px 20px;
+    color: #fff;
+    align-self: flex-end;
+    border-radius: 30px;
+}
+
+@media (any-hover: hover) {
+    .button {
+        transition: background-color 0.3s ease 0s;
+    }
+
+    .button:hover {
+        background-color: #073695;
+    }
 }
 
 .button:disabled {
-	color: #fff;
-    background-color: #676363;
+    background-color: #03532b;
+}
+
+.description {
+    margin-bottom: 20px;
+    flex: 1 1 auto;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.name:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.status {
+    color: #888;
+    font-size: 14px;
+}
+
+.status:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.text {
+    font-size: 14px;
 }

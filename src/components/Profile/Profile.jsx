@@ -1,10 +1,13 @@
-import Description from './desc/Desc'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
     return (<div>
-            <Description userProfile={props.userProfile} userStatus={props.userStatus}
-                         updateStatus={props.updateStatus}/>
+            <ProfileInfo uploadPhoto={props.uploadPhoto} userProfile={props.userProfile}
+                         userStatus={props.userStatus} authUserId={props.authUserId}
+                         updateStatus={props.updateStatus} uploadProfile={props.uploadProfile}
+                         error={props.error}
+            />
             <MyPostsContainer/>
         </div>
     )

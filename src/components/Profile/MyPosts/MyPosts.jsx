@@ -1,8 +1,9 @@
 import styles from './MyPosts.module.css'
 import Post from './../posts/Post'
-import {Field, Form, Formik} from "formik";
+import {Form, Formik} from "formik";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPen} from '@fortawesome/free-solid-svg-icons'
+
 
 const PostForm = (props) => {
     return (
@@ -40,7 +41,7 @@ const MyPosts = (props) => {
         <div>
             <div className={styles.form}>
                 <div className={styles.title}>
-                    <span><FontAwesomeIcon icon={faPen} /></span>
+                    <span><FontAwesomeIcon icon={faPen}/></span>
                     <h3>Create Post</h3>
                 </div>
                 <PostForm onSubmit={onAddPost}/>
