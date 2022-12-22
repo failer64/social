@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/social/static/css/main.d515d11d.css",
-    "main.js": "/social/static/js/main.16ed12c0.js",
+    "main.css": "/social/static/css/main.5c617b43.css",
+    "main.js": "/social/static/js/main.296f25fe.js",
     "static/css/34.9e3dd5fb.chunk.css": "/social/static/css/34.9e3dd5fb.chunk.css",
-    "static/js/34.6618434d.chunk.js": "/social/static/js/34.6618434d.chunk.js",
-    "static/css/385.ec2c23b1.chunk.css": "/social/static/css/385.ec2c23b1.chunk.css",
+    "static/js/34.a4e23f47.chunk.js": "/social/static/js/34.a4e23f47.chunk.js",
+    "static/css/385.5a983960.chunk.css": "/social/static/css/385.5a983960.chunk.css",
     "static/js/385.6b2c9d4e.chunk.js": "/social/static/js/385.6b2c9d4e.chunk.js",
     "static/js/787.9181411e.chunk.js": "/social/static/js/787.9181411e.chunk.js",
     "static/media/photo.jpg": "/social/static/media/photo.d5e10f3223b2e8bd0ea6.jpg",
     "static/media/loading.gif": "/social/static/media/loading.b8eaef343f76e037e251.gif",
     "index.html": "/social/index.html",
-    "main.d515d11d.css.map": "/social/static/css/main.d515d11d.css.map",
-    "main.16ed12c0.js.map": "/social/static/js/main.16ed12c0.js.map",
+    "main.5c617b43.css.map": "/social/static/css/main.5c617b43.css.map",
+    "main.296f25fe.js.map": "/social/static/js/main.296f25fe.js.map",
     "34.9e3dd5fb.chunk.css.map": "/social/static/css/34.9e3dd5fb.chunk.css.map",
-    "34.6618434d.chunk.js.map": "/social/static/js/34.6618434d.chunk.js.map",
-    "385.ec2c23b1.chunk.css.map": "/social/static/css/385.ec2c23b1.chunk.css.map",
+    "34.a4e23f47.chunk.js.map": "/social/static/js/34.a4e23f47.chunk.js.map",
+    "385.5a983960.chunk.css.map": "/social/static/css/385.5a983960.chunk.css.map",
     "385.6b2c9d4e.chunk.js.map": "/social/static/js/385.6b2c9d4e.chunk.js.map",
     "787.9181411e.chunk.js.map": "/social/static/js/787.9181411e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d515d11d.css",
-    "static/js/main.16ed12c0.js"
+    "static/css/main.5c617b43.css",
+    "static/js/main.296f25fe.js"
   ]
 }
