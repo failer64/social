@@ -53,8 +53,10 @@ const UsersPage: FC = React.memo(() => {
         }
         if (actualPage) {
             dispatch(actions.setCurrentPage(actualPage));
+            dispatch(getUsers(actualPage, pageSize, actualFilter));
+        } else {
+            dispatch(getUsers(currentPage, pageSize, actualFilter));
         }
-        dispatch(getUsers(actualPage, pageSize, actualFilter));
     }, [])
 
     useEffect(() => {

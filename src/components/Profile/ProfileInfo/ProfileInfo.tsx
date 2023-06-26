@@ -62,7 +62,7 @@ export const ProfileInfo: FC<PropsType> = ({authUserId}) => {
         <div className={styles.background}>
             <img
                 src={userProfile.photos.large ||
-                    'https://catherineasquithgallery.com/uploads/posts/2021-02/1612704873_4-p-zelenii-fon-park-12.jpg'}
+                    'https://s.zefirka.net/images/2020-09-21/krasota-prirody-na-fotografiyax/krasota-prirody-na-fotografiyax-17.jpg'}
                 alt="background"/>
         </div>
         <div className={styles.body}>

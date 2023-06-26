@@ -15,10 +15,11 @@ export const ProfilePage = React.memo(() => {
     useEffect(() => {
         if (!userId && authUserId !== null) {
             userId = authUserId.toString();
+            dispatch(isFollowed(Number(userId)));
         }
         dispatch(getUserProfile(Number(userId)));
         dispatch(getStatus(Number(userId)));
-        dispatch(isFollowed(Number(userId)));
+
     }, [userId, authUserId]);
 
     if (!userId) return <Navigate to={'/login'}/>;

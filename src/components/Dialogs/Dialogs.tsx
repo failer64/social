@@ -20,7 +20,10 @@ const Dialogs: FC = () => {
     }
 
     useEffect(() => {
-        dispatch(getDialogs());
+        if(isAuth){
+            dispatch(getDialogs());
+        }
+
     }, [])
 
     useEffect(() => {
