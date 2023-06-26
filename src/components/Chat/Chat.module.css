@@ -1,0 +1,146 @@
+.body {
+    height: 100%;
+    padding: 30px 20px 50px;
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+}
+.null{
+    text-align: center;
+}
+.item {
+    display: flex;
+}
+
+.user {
+    justify-content: flex-end;
+}
+
+.user .block {
+    align-items: flex-end;
+}
+
+.user .message {
+    background-color: #05f;
+    color: #f2f2f2;
+}
+
+.item:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.block {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image {
+    max-width: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.image img {
+    max-width: 100%;
+}
+
+.name {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    color: #212529;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.name span {
+    padding-left: 7px;
+    color: #2754e6;
+}
+
+
+.content {
+    flex: 1 1 auto;
+}
+
+.date {
+    font-size: 12px;
+    color: #adb5bd;
+}
+
+.message {
+    font-family: Montserrat, sans-serif;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 5%);
+    padding: 14px 20px;
+    background-color: #e8f1fa;
+    color: #111;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    max-width: 45%;
+}
+
+.form {
+    background-color: white;
+    padding: 15px;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    max-width: 950px;
+    bottom: 0;
+    display: flex;
+}
+
+.input {
+    flex: 1 1 auto;
+    margin-right: 5px;
+}
+
+.input input {
+    height: 40px;
+    padding: 0 15px;
+    color: #111;
+    width: 100%;
+    border-radius: 30px;
+    background-color: #e8f1fa;
+}
+
+.button {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #05f;
+    transition: background-color 0.5s ease 0s;
+}
+
+
+.button:hover {
+    background-color: #04389e;
+}
+
+.delete {
+    cursor: pointer;
+    margin-top: 10px;
+    color: #2754e6;
+    transition: color 0.5s ease 0s;
+}
+
+.delete:hover {
+    color: rgba(39, 84, 230, 0.6);
+}

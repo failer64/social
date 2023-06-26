@@ -1,13 +1,4 @@
 import axios from "axios";
-import {InfoType, PhotosType, ProfileType, UserType} from "../types/types";
-
-export enum Enum {
-    Success = 0,
-    Error = 1
-}
-export enum EnumCaptcha {
-    Captcha = 10,
-}
 
 export const instance = axios.create({
     withCredentials: true,
@@ -17,114 +8,16 @@ export const instance = axios.create({
     }
 });
 
-type GetUsersType = {
-    items: Array<UserType>
-    totalCount: number
-    error: string | null
+export enum Enum {
+    Success = 0,
+    Error = 1
 }
-type FollowType = {
-    data: {}
-    resultCode: Enum
+export enum EnumCaptcha {
+    Captcha = 10,
+}
+
+export type ResponseType<D = {}, RC = Enum> = {
+    data: D
     messages: Array<string>
+    resultCode: RC
 }
-
-export const usersAPI = {
-    getUsers(pageSize: number = 5, currentPage: number = 1) {
-        return (
-            instance.get<GetUsersType>(`users?count=${pageSize}&page=${currentPage}`)
-                .then(response => response.data)
-        )
-    },
-    deleteFollow(id: number) {
-        return (instance.delete<FollowType>(`follow/${id}`).then(response => response.data))
-    },
-    addFollow(id: number) {
-        return (instance.post<FollowType>(`follow/${id}`).then(response => response.data))
-    },
-}
-
-
-type UpdateStatusType = {
-    resultCode: Enum
-    messages: Array<string>
-    data: {}
-}
-type UploadProfileType = {
-    resultCode: Enum
-    messages: Array<string>
-    data: {}
-}
-type UpdatePhotoType = {
-    resultCode: Enum
-    messages: Array<string>
-    data: PhotosType
-}
-
-export const profileAPI = {
-    getProfile(id: number) {
-        return instance.get<ProfileType>(`profile/${id}`).then(response => response.data)
-    },
-    getStatus(id: number) {
-        return instance.get<string>(`profile/status/${id}`).then(response => response.data)
-    },
-    updateStatus(status: string) {
-        return instance.put<UpdateStatusType>(`profile/status`, {status: status});
-    },
-    updatePhoto(photos: any) {
-        const formData = new FormData();
-        formData.append("image", photos);
-        return instance.put<UpdatePhotoType>(`profile/photo`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then(response => response.data);
-    },
-    uploadProfile(profile: InfoType) {
-        return instance.put<UploadProfileType>(`profile/`, profile).then(response => response.data);
-    },
-}
-
-type MeResponseType = {
-    data: {
-        id: number
-        email: string
-        login: string
-    }
-    resultCode: Enum
-    messages: Array<string>
-}
-type LoginResponseType = {
-    data: {
-        userId: number
-    }
-    resultCode: Enum | EnumCaptcha
-    messages: Array<string>
-}
-type logoutResponseType = {
-    data: {}
-    resultCode: Enum
-    messages: Array<string>
-}
-export const isAuthAPI = {
-    me() {
-        return instance.get<MeResponseType>(`auth/me`).then(response => response.data)
-    },
-    login(email: string, password: string, rememberMe: boolean, captcha: string | null = null) {
-        return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe, captcha})
-            .then(response => response.data)
-    },
-    logout() {
-        return instance.delete<logoutResponseType>(`auth/login`).then(response => response.data);
-    },
-}
-
-type getCaptchaUrlType = {
-    url: string
-}
-export const securityAPI = {
-    getCaptchaUrl() {
-        return instance.get<getCaptchaUrlType>(`security/get-captcha-url`).then(response => response.data);
-    }
-}
-
-

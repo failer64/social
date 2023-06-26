@@ -1,4 +1,3 @@
-// @ts-ignore
 import preloader from "./../../../assets/img/loading.gif";
 import React from "react";
 import styles from './Preloader.module.css'

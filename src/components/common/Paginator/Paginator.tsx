@@ -1,18 +1,14 @@
 import styles from "./Paginator.module.css";
 import {FC, useEffect, useState} from "react";
 import cn from "classnames"
+import {useSelector} from "react-redux";
+import {totalUsersCountSelector} from "../../../redux/selectors/users-selectors";
 
-type PropsType = {
-    totalItemsCount: number
-    pageSize: number
-    currentPage: number
-    portionSize?: number
-    onPageChanged: (page: number) => void
-}
 
-const Paginator: FC<PropsType> = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 15}) => {
+const Paginator: FC<PropsType> = ({pageSize, currentPage, onPageChanged, portionSize = 15}) => {
+    const totalItemsCount = useSelector(totalUsersCountSelector);
     const pagesCount = Math.ceil(totalItemsCount / pageSize);
-    const pagesArr: Array<number> = [];
+    const pagesArr = [];
     for (let i = 1; i <= pagesCount; i++) {
         pagesArr.push(i);
     }
@@ -22,7 +18,9 @@ const Paginator: FC<PropsType> = ({totalItemsCount, pageSize, currentPage, onPag
     const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     const rightPortionPageNumber = portionNumber * portionSize;
 
-    useEffect(() => setPortionNumber(Math.ceil(currentPage / portionSize)), [currentPage, portionSize]);
+    useEffect(() => {
+        setPortionNumber(Math.ceil(currentPage / portionSize))
+    }, [currentPage, portionSize]);
 
     return (
         <div className={styles.paging}>
@@ -48,3 +46,11 @@ const Paginator: FC<PropsType> = ({totalItemsCount, pageSize, currentPage, onPag
 }
 
 export default Paginator;
+
+type PropsType = {
+    pageSize: number
+    currentPage: number
+    portionSize?: number
+
+    onPageChanged: (p: number) => void
+}

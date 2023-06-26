@@ -1,6 +1,35 @@
 .item {
-	font-size: 24px;
+	background-color: rgba(232, 241, 250, 0.3);
+	padding: 10px 20px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+}
+.item.message{
+	background-color: #e8f1fa;
 }
 .item:not(:last-child) {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+}
+.image{
+	max-width: 35px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.image img{
+	max-width: 100%;
+}
+.name{
+	font-family: Montserrat, sans-serif;
+	font-weight: 700;
+	color: #212529 ;
+	font-size: 14px;
+}
+.content{
+	flex: 1 1 auto;
+}
+.date{
+	font-size: 12px;
+	color: #adb5bd ;
 }

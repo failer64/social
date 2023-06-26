@@ -1,50 +1,53 @@
 .sidebar {
-	position: relative;
+    position: relative;
 }
 
 .body {
-	position: fixed;
-	height: 100%;
-	width: 250px;
-	padding: 20px 15px;
-	background-color: white;
-	box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
-	border-radius: 15px;
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    padding: 20px 15px;
+    background-color: white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .05);
+    border-radius: 15px;
 
 }
 
 .list li {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .list li span {
-	width: 35px;
-	color: #05f;
-	font-size: 28px;
-	margin-right: 10px;
+    width: 35px;
+    color: #05f;
+    font-size: 28px;
+    margin-right: 10px;
 }
 
 .list li:not(:last-child) {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 
 .link {
-	text-transform: capitalize;
-	font-size: 18px;
-	color: #888;
+    text-transform: capitalize;
+    font-size: 18px;
+    color: #888;
 }
 
 .active {
-	text-transform: capitalize;
-	font-size: 18px;
-	color: #1e74fd;
+    text-transform: capitalize;
+    font-size: 18px;
+    color: #1e74fd;
 }
 
 @media (any-hover: hover) {
-	.link:hover {
-		transition: color 0.3s ease 0s;
-		color: #1e74fd;
-	}
+    .link {
+        transition: color 0.3s ease 0s;
+    }
+
+    .link:hover {
+        color: #1e74fd;
+    }
 }

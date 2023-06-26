@@ -1,42 +1,86 @@
-import {DialogsType, MessageType} from "../types/types";
+import {BaseThunkTypes, Types} from "./redux-store";
+import {dialogsAPI, DialogsType, MessageType} from "../api/dialogs-api";
+import {Enum} from "../api/api";
 
-const ADD_MESSAGE = "social/dialogs-reducer/ADD-MESSAGE";
 
 let initialState = {
-    dialogs: [
-        {id: 1, name: 'Andrew'},
-        {id: 2, name: 'Dmitry'},
-        {id: 3, name: 'Sasha'},
-        {id: 4, name: 'Dmitry'},
-        {id: 5, name: 'Gena'},
-    ] as Array<DialogsType>,
-    messages: [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'How are you?'},
-        {id: 3, message: 'Yo'},
-        {id: 4, message: 'Yo'},
-        {id: 5, message: 'lorem'},
-    ] as Array<MessageType>,
-};
-type InitialStateType = typeof initialState
-type ActionsTypes = AddMessageActionCreatorType
+        dialogs: [] as Array<DialogsType>,
+        messages: [] as Array<MessageType>,
+    }
+;
 
-const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+export const dialogsReducer = (state = initialState,
+                               action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case "social/dialogs-reducer/ADD_DIALOGS":
             return {
                 ...state,
-                messages: [...state.messages, {id: state.messages.length + 1, message: action.message}],
+                dialogs: action.dialogs
+            }
+        case 'social/dialogs-reducer/ADD_CHAT_MESSAGES':
+            return {
+                ...state,
+                messages: action.messages
+            }
+        case 'social/dialogs-reducer/ADD_MESSAGE':
+            return {
+                ...state,
+                messages: [...state.messages, action.message],
+            }
+        case 'social/dialogs-reducer/DELETE_MESSAGE':
+            return {
+                ...state,
+                messages: state.messages.filter(item => item.id !== action.messageId)
             }
         default:
             return state;
     }
 }
 
-type AddMessageActionCreatorType = {
-    type: typeof ADD_MESSAGE
-    message: string
+export const actions = {
+    addNewMessage: (message: MessageType) => ({type: 'social/dialogs-reducer/ADD_MESSAGE', message} as const),
+    addDialogs: (dialogs: Array<DialogsType>) => ({type: 'social/dialogs-reducer/ADD_DIALOGS', dialogs} as const),
+    addChat: (messages: any) => ({type: 'social/dialogs-reducer/ADD_CHAT_MESSAGES', messages} as const),
+    deleteMessageSuccess: (messageId: number) => ({type: 'social/dialogs-reducer/DELETE_MESSAGE', messageId} as const),
 }
-export const addMessageActionCreator = (message: string): AddMessageActionCreatorType => ({type: ADD_MESSAGE, message})
+
+export const addMessage = (id: number, newMessage: any): ThunkType => async (dispatch) => {
+    const data = await dialogsAPI.sendMessage(id, newMessage);
+    if (data.resultCode === Enum.Success) {
+        dispatch(actions.addNewMessage(data.data.message));
+    }
+}
+
+export const getDialogs = (): ThunkType => async (dispatch) => {
+    const data = await dialogsAPI.getAllDialogs();
+    if (data) {
+        dispatch(actions.addDialogs(data));
+    }
+}
+
+export const getChat = (id: number): ThunkType => async (dispatch) => {
+    const data = await dialogsAPI.getChat(id);
+    if (!data.error) {
+        dispatch(actions.addChat(data.items));
+    }
+}
+
+export const deleteMessage = (messageId: number): ThunkType => async (dispatch) => {
+    const data = await dialogsAPI.deleteMessage(messageId);
+    if (data.resultCode === Enum.Success) {
+        dispatch(actions.deleteMessageSuccess(messageId));
+    }
+}
+
+export const startChat = (userId: number): RedirectThunkType => async (dispatch) => {
+    const data = await dialogsAPI.startChat(userId);
+    if (data.resultCode === Enum.Success) {
+    }
+}
 
 export default dialogsReducer;
+
+type InitialStateType = typeof initialState
+type ActionsTypes = ReturnType<Types<typeof actions>>
+type ThunkType = BaseThunkTypes<ActionsTypes>
+type RedirectThunkType = BaseThunkTypes<ActionsTypes, any>

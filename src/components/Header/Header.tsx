@@ -1,18 +1,24 @@
 import styles from './Header.module.css'
-import {NavLink} from "react-router-dom";
-// @ts-ignore
+import {NavLink, useNavigate} from "react-router-dom";
 import logo from "./../../assets/img/logo.png";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 import React, {FC} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../redux/auth-reducer";
+import {StateType} from "../../redux/redux-store";
 
-type PropsType = {
-    isAuth: boolean
-    login: string | null
-    logout: () => void
-}
 
-const Header: FC<PropsType> = ({isAuth, login, logout}) => {
+export const Header: FC = () => {
+
+    const isAuth = useSelector((state: StateType) => state.auth.isAuth);
+    const login = useSelector((state: StateType) => state.auth.login);
+    const dispatch = useDispatch<any>();
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+        dispatch(logout(navigate));
+    }
 
     return (
         <header className={styles.header}>
@@ -25,10 +31,8 @@ const Header: FC<PropsType> = ({isAuth, login, logout}) => {
                         <span className={styles.icon}><FontAwesomeIcon icon={faUser}/></span>
                         <span>Login</span>
                     </NavLink>}</span>
-                {isAuth && <button className={styles.logout} onClick={logout}>Logout</button>}
+                {isAuth && <button className={styles.logout} onClick={onLogout}>Logout</button>}
             </div>
         </header>
     );
 }
-
-export default Header;

@@ -11,6 +11,7 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsType
     photos: PhotosType
+    aboutMe: string
 }
 export type ContactsType = {
     github: string | null
@@ -35,17 +36,17 @@ export type UserType = {
     followed: boolean
 }
 
-export type DialogsType = {
-    id: number
-    name: string
-}
+// export type DialogsType = {
+//     id: number
+//     name: string
+// }
 export type MessageType = {
     id: number
     message: string
 }
 
 export type InfoType = {
-    userId: boolean
+    userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
