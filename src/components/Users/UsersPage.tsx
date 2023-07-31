@@ -1,5 +1,5 @@
 import styles from "./Users.module.css";
-import Paginator from "../common/Paginator/Paginator";
+import {Pagination} from 'antd';
 import User from './User'
 import {useDispatch, useSelector} from "react-redux";
 import React, {FC, useEffect} from "react";
@@ -11,7 +11,7 @@ import {
     filterSelector,
     getUsersSelector,
     isFetchingSelector,
-    pageSizeSelector
+    pageSizeSelector, totalUsersCountSelector
 } from "../../redux/selectors/users-selectors";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 
@@ -22,6 +22,7 @@ const UsersPage: FC = React.memo(() => {
     const pageSize = useSelector(pageSizeSelector);
     const users = useSelector(getUsersSelector);
     const filter = useSelector(filterSelector);
+    const totalItemsCount = useSelector(totalUsersCountSelector);
     const dispatch = useDispatch<any>();
 
     const location = useLocation();
@@ -30,6 +31,7 @@ const UsersPage: FC = React.memo(() => {
     const [searchParams] = useSearchParams(location.search);
 
     useEffect(() => {
+
         // @ts-ignore
         const parsed: ParsedType = Object.fromEntries([...searchParams]);
 
@@ -67,15 +69,22 @@ const UsersPage: FC = React.memo(() => {
     }, [filter, currentPage, location.search])
 
 
-    const onPageChanged = (pageNumber: number) => {
+    const onPageChanged = (pageNumber: number, pageSize: number) => {
         dispatch(actions.setCurrentPage(pageNumber));
         dispatch(getUsers(pageNumber, pageSize, filter));
+        // dispatch(getUsers(pageNumber, pageSize, filter));
+    }
+
+    const onShowSizeChanged = (current: number = 1, size: number) => {
+        dispatch(actions.resizePage(size));
     }
 
     return (
         <div>
             <SearchForm pageSize={pageSize} filter={filter}/>
-            <Paginator pageSize={pageSize} onPageChanged={onPageChanged} currentPage={currentPage}/>
+            <Pagination onShowSizeChange={onShowSizeChanged} pageSizeOptions={[6, 12, 24, 48]} defaultPageSize={12}
+                        total={totalItemsCount} onChange={onPageChanged} current={currentPage}
+                        style={{marginBottom: '20px', textAlign: 'center'}}/>
             {isFetching ? <Preloader/> :
                 <div className={styles.row}>
                     {
@@ -85,13 +94,17 @@ const UsersPage: FC = React.memo(() => {
                     }
                     {!users.length && <div>not found</div>}
                 </div>}
-        </div>)
+            {/*<Paginator pageSize={pageSize} onPageChanged={onPageChanged} currentPage={currentPage}/>*/}
+
+        </div>
+    )
 })
 
 export default UsersPage
 
-export type ParsedType = {
-    term: string
-    friend: 'null' | 'false' | 'true'
-    page: number
-}
+export type ParsedType =
+    {
+        term: string
+        friend: 'null' | 'false' | 'true'
+        page: number
+    }

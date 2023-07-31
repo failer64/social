@@ -47,6 +47,11 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id !== action.userId),
             }
+        case "social/users-reducer/SET_SIZE":
+            return {
+                ...state,
+                pageSize: action.payload
+            }
         default:
             return state;
     }
@@ -60,6 +65,7 @@ export const actions = {
     setCurrentPage: (page: number) => ({type: 'social/users-reducer/CHANGE_PAGE', page} as const),
     toggleFetching: (isFetching: boolean) => ({type: 'social/users-reducer/TOGGLE_FETCHING', isFetching} as const),
     setFiler: (filter: FilterType) => ({type: 'social/users-reducer/SET_FILTER', payload: filter} as const),
+    resizePage:(size:number)=>({type: 'social/users-reducer/SET_SIZE', payload: size} as const),
     toggleFollowingProgress: (isFetching: boolean, userId: number) => ({
         type: 'social/users-reducer/TOGGLE_FOLLOWING_PROGRESS',
         isFetching,
